@@ -158,3 +158,64 @@ btnNine.addEventListener("click",function () { addDigit(9); });
 
 let btnZero = document.getElementById("btnZero");
 btnZero.addEventListener("click",function () { addDigit(0); });
+
+//Using keyboard
+document.addEventListener("keydown", function(event) {
+    let keycode = event.keyCode;
+    switch (keycode){
+        case 48:
+            addDigit(0);
+            break;
+        case 49:
+            addDigit(1);
+            break;
+        case 50:
+            addDigit(2);
+            break;
+        case 51:
+            addDigit(3);
+            break;
+        case 52:
+            addDigit(4);
+            break;
+        case 53:
+            addDigit(5);
+            break;
+        case 54:
+            addDigit(6);
+            break;
+        case 55:
+            addDigit(7);
+            break;
+        case 56:
+            addDigit(8);
+            break;
+        case 57:
+            addDigit(9);
+            break;
+        case 106:
+            operatorMultiplication();
+            break;
+        case 107:
+            operatorAdd();
+            break;
+        case 109:
+            operatorMinus();
+            break;
+        case 111:
+            operatorDivision();
+            break;
+        case 13:
+            getSummarize();
+            break;
+        case 8:
+            clearForward();
+            break;
+        case 27:
+            displayCurrent.value = 0;
+            resetCalculator();
+            break;
+        default:
+            break;
+    }
+});
