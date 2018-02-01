@@ -3,7 +3,7 @@
 
 ## Version 1.0
 - Created the simple calculator (add, subtract, multiply, divide)
-- Using both mice and keyboard
+- Using both mouse and keyboard
 - Using only integer
 
 ## Next versions
