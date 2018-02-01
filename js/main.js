@@ -6,32 +6,24 @@ var flagCalculation = 0; // check status for begin write new number into display
 var flagGetSummarize = 0;
 
 //Declare functions
-function checkDisplayIsEmpty() {if (displayCurrent.value.length === 0 || parseInt(displayCurrent.value) === 0){return true;}else{return false;}}
 function resetCalculator() {sumNr = 0; flagOperatorState = 0; flagCalculation = 0;}
-function clearDisplay() {displayCurrent.value = "";}
 
-function addDigit(number){
-    if (flagCalculation === 1){ //begin a new number for current calculation
-        clearDisplay();
+function addDigit(numberInput){
+    if (flagCalculation === 1){ //begin write a new number for current calculation
+        displayCurrent.value = ""; //clear the display
         flagCalculation = 0;
     }
 
-    if (checkDisplayIsEmpty() || flagGetSummarize === 1){
-        displayCurrent.value = number;
+    if (parseInt(displayCurrent.value) === 0 || flagGetSummarize === 1){
+        displayCurrent.value = numberInput;
         flagGetSummarize = 0;
     }else{
         if (displayCurrent.value.length < 10){
-            displayCurrent.value += number;
+            displayCurrent.value += numberInput;
         }else{
-            alert("Max 10 digits!");
+            alert("Enter max 10 digits!");
         }
     }
-}
-function getSummarize(){
-    completeLastOperator(flagOperatorState);
-    displayCurrent.value = sumNr;
-    flagGetSummarize = 1;
-    resetCalculator();
 }
 function completeLastOperator(flagLastOperatorState){
     let lastNr = parseInt(displayCurrent.value); //get the last number on display
@@ -59,6 +51,26 @@ function doCalculation(flagLastOperatorState){
         sumNr += displayCurrentValue;
     }else {
         completeLastOperator(flagLastOperatorState);
+    }
+}
+
+function getSummarize(){
+    completeLastOperator(flagOperatorState);
+    displayCurrent.value = sumNr;
+    flagGetSummarize = 1;
+    resetCalculator();
+}
+function clearForward() {
+    if (displayCurrent.value.length > 1){
+        let newNr = "";
+        let displayCurrentArray = Array.from(displayCurrent.value);
+
+        for (let i=0; i < displayCurrentArray.length-1; i++){
+            newNr += displayCurrentArray[i];
+        }
+        displayCurrent.value = newNr;
+    }else{
+        displayCurrent.value = 0;
     }
 }
 
@@ -96,6 +108,9 @@ function operatorDivision() {
 //Get functions or operators from button
 let btnClear = document.getElementById("btnClear");
 btnClear.addEventListener("click",function () { displayCurrent.value = 0; resetCalculator();});
+
+let btnForward = document.getElementById("btnForward");
+btnForward.addEventListener("click",function () { clearForward();});
 
 let btnSummarize = document.getElementById("btnSummarize");
 btnSummarize.addEventListener("click", function () { getSummarize();});
