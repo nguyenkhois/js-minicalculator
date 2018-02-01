@@ -53,7 +53,7 @@ function completeLastOperator(flagLastOperatorState){
             break;
     }
 }
-function getCalculation(flagLastOperatorState){
+function doCalculation(flagLastOperatorState){
     let displayCurrentValue = parseInt(displayCurrent.value);
     if (flagLastOperatorState === 0){
         sumNr += displayCurrentValue;
@@ -67,28 +67,28 @@ function operatorAdd(){
     let flagLastOperatorState = flagOperatorState; //saved the last operator state
     flagOperatorState = 1; //turn on new state
 
-    getCalculation(flagLastOperatorState);
+    doCalculation(flagLastOperatorState);
     flagCalculation = 1;
 }
 function operatorMinus() {
     let flagLastOperatorState = flagOperatorState; //saved the last operator state
     flagOperatorState = 2; //turn on new state
 
-    getCalculation(flagLastOperatorState);
+    doCalculation(flagLastOperatorState);
     flagCalculation = 1;
 }
 function operatorMultiplication(){
     let flagLastOperatorState = flagOperatorState; //saved the last operator state
     flagOperatorState = 3; //turn on new state
 
-    getCalculation(flagLastOperatorState);
+    doCalculation(flagLastOperatorState);
     flagCalculation = 1;
 }
 function operatorDivision() {
     let flagLastOperatorState = flagOperatorState; //saved the last operator state
     flagOperatorState = 4; //turn on new state
 
-    getCalculation(flagLastOperatorState);
+    doCalculation(flagLastOperatorState);
     flagCalculation = 1;
 }
 
