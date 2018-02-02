@@ -7,8 +7,13 @@
 - Using only integer
 
 ## Next versions
-- Using decimal
-- Create functions: MOD, DIV, %, CE 
+- Version 1.x
+    - Fix bugs
+    - Themes
+    - Using decimal numbers
+- Version 2.x
+    - Will make these functions: MOD, DIV, %, CE
+    - User can change keyboard layouts (English, Swedish)
 
 ## References
 - [Keycode viewer](http://keycode.info/)
