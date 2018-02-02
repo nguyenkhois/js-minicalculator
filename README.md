@@ -1,8 +1,9 @@
 # [Mini calculator](https://nguyenkhois.github.io/js-minicalculator/index.html)
 - My exercise about JavaScript (ECMAScript 6)
 
-## Version 1.0
-- Created the simple calculator (add, subtract, multiply, divide)
+## Changelogs
+### Version 1.0 (2018-02-01)
+- Created the simple calculator (add, subtract, multiplication, division)
 - Using both mouse and keyboard
 - Using only integer
 
