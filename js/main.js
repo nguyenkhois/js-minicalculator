@@ -32,7 +32,7 @@ function completeLastOperator(flagLastOperatorState){
         case 1: // + Add
             sumNr += lastNr;
             break;
-        case 2:// - Minus
+        case 2:// - Subtraction
             sumNr -= lastNr;
             break;
         case 3:// * Multiplication
@@ -45,7 +45,7 @@ function completeLastOperator(flagLastOperatorState){
             break;
     }
 }
-function doCalculation(flagLastOperatorState){
+function makeCalculation(flagLastOperatorState){
     let displayCurrentValue = parseInt(displayCurrent.value);
     if (flagLastOperatorState === 0){
         sumNr += displayCurrentValue;
@@ -79,28 +79,28 @@ function operatorAdd(){
     let flagLastOperatorState = flagOperatorState; //saved the last operator state
     flagOperatorState = 1; //turn on new state
 
-    doCalculation(flagLastOperatorState);
+    makeCalculation(flagLastOperatorState);
     flagCalculation = 1;
 }
-function operatorMinus() {
+function operatorSubtraction() {
     let flagLastOperatorState = flagOperatorState; //saved the last operator state
     flagOperatorState = 2; //turn on new state
 
-    doCalculation(flagLastOperatorState);
+    makeCalculation(flagLastOperatorState);
     flagCalculation = 1;
 }
 function operatorMultiplication(){
     let flagLastOperatorState = flagOperatorState; //saved the last operator state
     flagOperatorState = 3; //turn on new state
 
-    doCalculation(flagLastOperatorState);
+    makeCalculation(flagLastOperatorState);
     flagCalculation = 1;
 }
 function operatorDivision() {
     let flagLastOperatorState = flagOperatorState; //saved the last operator state
     flagOperatorState = 4; //turn on new state
 
-    doCalculation(flagLastOperatorState);
+    makeCalculation(flagLastOperatorState);
     flagCalculation = 1;
 }
 
@@ -109,8 +109,8 @@ function operatorDivision() {
 let btnClear = document.getElementById("btnClear");
 btnClear.addEventListener("click",function () { displayCurrent.value = 0; resetCalculator();});
 
-let btnForward = document.getElementById("btnForward");
-btnForward.addEventListener("click",function () { clearForward();});
+let btnBackspace = document.getElementById("btnBackspace");
+btnBackspace.addEventListener("click",function () { clearForward();});
 
 let btnSummarize = document.getElementById("btnSummarize");
 btnSummarize.addEventListener("click", function () { getSummarize();});
@@ -119,7 +119,7 @@ let btnAdd = document.getElementById("btnAdd");
 btnAdd.addEventListener("click",function () { operatorAdd();});
 
 let btnMinus = document.getElementById("btnMinus");
-btnMinus.addEventListener("click",function () { operatorMinus();});
+btnMinus.addEventListener("click",function () { operatorSubtraction();});
 
 let btnMultiplication = document.getElementById("btnMultiplication");
 btnMultiplication.addEventListener("click",function () { operatorMultiplication();});
@@ -200,7 +200,7 @@ document.addEventListener("keydown", function(event) {
             operatorAdd();
             break;
         case 109:
-            operatorMinus();
+            operatorSubtraction();
             break;
         case 111:
             operatorDivision();
