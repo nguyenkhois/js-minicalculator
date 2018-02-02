@@ -1,12 +1,12 @@
 //Declare global variables
 var displayCurrent = document.getElementById("display");
 var sumNr = 0;
-var flagOperatorState = 0; //1-Add, 2-Minus, 3-Multiplication, 4-Division
-var flagCalculation = 0; // check status for begin write new number into display - using after press operator key
+var flagOperatorState = 0; //1-Add, 2-Subtract, 3-Multiplication, 4-Division
+var flagCalculation = 0; // Check status for beginning write new number into display - using after press operator key
 var flagGetSummarize = 0;
 
 //Declare functions
-function resetCalculator() {sumNr = 0; flagOperatorState = 0; flagCalculation = 0;}
+function resetCalculator() {sumNr = 0; flagOperatorState = 0; flagCalculation = 0;displayCurrent.value = 0;}
 
 function addDigit(numberInput){
     if (flagCalculation === 1){ //begin write a new number for current calculation
@@ -21,7 +21,7 @@ function addDigit(numberInput){
         if (displayCurrent.value.length < 10){
             displayCurrent.value += numberInput;
         }else{
-            alert("Enter max 10 digits!");
+            alert("Hey guy! You can only enter max 10 digits!");
         }
     }
 }
@@ -55,10 +55,14 @@ function makeCalculation(flagLastOperatorState){
 }
 
 function getSummarize(){
-    completeLastOperator(flagOperatorState);
-    displayCurrent.value = sumNr;
+    let displaySumNr;
     flagGetSummarize = 1;
+
+    completeLastOperator(flagOperatorState);
+    displaySumNr = sumNr;
+
     resetCalculator();
+    displayCurrent.value = displaySumNr;
 }
 function clearForward() {
     if (displayCurrent.value.length > 1){
@@ -77,28 +81,28 @@ function clearForward() {
 //Operators
 function operatorAdd(){
     let flagLastOperatorState = flagOperatorState; //saved the last operator state
-    flagOperatorState = 1; //turn on new state
+    flagOperatorState = 1; //turn on new state: Add
 
     makeCalculation(flagLastOperatorState);
     flagCalculation = 1;
 }
 function operatorSubtraction() {
     let flagLastOperatorState = flagOperatorState; //saved the last operator state
-    flagOperatorState = 2; //turn on new state
+    flagOperatorState = 2; //turn on new state: Subtract
 
     makeCalculation(flagLastOperatorState);
     flagCalculation = 1;
 }
 function operatorMultiplication(){
     let flagLastOperatorState = flagOperatorState; //saved the last operator state
-    flagOperatorState = 3; //turn on new state
+    flagOperatorState = 3; //turn on new state: Multiplication
 
     makeCalculation(flagLastOperatorState);
     flagCalculation = 1;
 }
 function operatorDivision() {
     let flagLastOperatorState = flagOperatorState; //saved the last operator state
-    flagOperatorState = 4; //turn on new state
+    flagOperatorState = 4; //turn on new state: Division
 
     makeCalculation(flagLastOperatorState);
     flagCalculation = 1;
@@ -212,7 +216,6 @@ document.addEventListener("keydown", function(event) {
             clearForward();
             break;
         case 27:
-            displayCurrent.value = 0;
             resetCalculator();
             break;
         default:

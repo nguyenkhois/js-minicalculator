@@ -3,6 +3,9 @@
 
 ## Changelogs
 ### Version 1.x
+#### Version 1.1 (2018-02-02)
+- Improved performance
+
 #### Version 1.0 (2018-02-01)
 - Created the simple calculator (add, subtract, multiplication, division)
 - Using both mouse and keyboard
