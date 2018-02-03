@@ -1,0 +1,25 @@
+.stbCalculator{
+    border: 1px solid #AAAAAA;
+}
+
+button{
+    width: 100px;
+    height: 70px;
+
+    /* User can not select text within button */
+    user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+
+    /*border: 1px solid #AAAAAA;*/
+
+    font-size: 30px;
+}
+input[id="display"]{
+    width: 408px;
+    height: 80px;
+
+    text-align: right;
+    font-size:60px;
+}

@@ -3,6 +3,11 @@
 
 ## Changelogs
 ### Version 1.x
+#### Version 1.2 (2018-02-03)
+- Improved performance
+- Using keyboard is better
+- Input data changed from integer to decimal and function convertStringToNumber() created for next version
+
 #### Version 1.1 (2018-02-02)
 - Improved performance
 
@@ -27,3 +32,4 @@
 ## References
 - [Keycode viewer](http://keycode.info/)
 - [Javascript Char Codes (Key Codes)](https://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes)
+- [Handling floating point numbers in JavaScript](http://www.saintsatplay.com/blog/2014/08/handling-floating-point-numbers-in-javascript)

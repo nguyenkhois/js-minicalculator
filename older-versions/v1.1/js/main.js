@@ -1,29 +1,20 @@
-//Mini calculator version 1.2 - 2018-02-03
 //Declare global variables
 var displayCurrent = document.getElementById("display");
 var sumNr = 0;
-var decimalFractionDigits = 0; //The number of digits after the decimal point
 var flagOperatorState = 0; //1-Add, 2-Subtract, 3-Multiplication, 4-Division
 var flagCalculation = 0; // Check status for beginning write new number into display - using after press operator key
 var flagGetSummarize = 0;
 
 //Declare functions
-function convertStringToNumber(sNumber, fractionDigits) {
-    return parseFloat(Number(sNumber).toFixed(fractionDigits));
-}
-function resetCalculator() {
-    sumNr = 0;
-    flagOperatorState = 0;
-    flagCalculation = 0;
-    displayCurrent.value = 0;
-}
+function resetCalculator() {sumNr = 0; flagOperatorState = 0; flagCalculation = 0;displayCurrent.value = 0;}
+
 function addDigit(numberInput){
     if (flagCalculation === 1){ //begin write a new number for current calculation
         displayCurrent.value = ""; //clear the display
         flagCalculation = 0;
     }
 
-    if (convertStringToNumber(displayCurrent.value) == 0 || flagGetSummarize === 1){
+    if (parseInt(displayCurrent.value) === 0 || flagGetSummarize === 1){
         displayCurrent.value = numberInput;
         flagGetSummarize = 0;
     }else{
@@ -35,7 +26,7 @@ function addDigit(numberInput){
     }
 }
 function completeLastOperator(flagLastOperatorState){
-    let lastNr = convertStringToNumber(displayCurrent.value, decimalFractionDigits);
+    let lastNr = parseInt(displayCurrent.value); //get the last number on display
 
     switch (flagLastOperatorState){
         case 1: // + Add
@@ -55,15 +46,14 @@ function completeLastOperator(flagLastOperatorState){
     }
 }
 function makeCalculation(flagLastOperatorState){
-    //Must change the string which get from input to number here
-    let displayCurrentValue = convertStringToNumber(displayCurrent.value,decimalFractionDigits);
-
-    if (flagLastOperatorState == 0){
+    let displayCurrentValue = parseInt(displayCurrent.value);
+    if (flagLastOperatorState === 0){
         sumNr += displayCurrentValue;
     }else {
         completeLastOperator(flagLastOperatorState);
     }
 }
+
 function getSummarize(){
     let displaySumNr;
     flagGetSummarize = 1;
@@ -121,62 +111,62 @@ function operatorDivision() {
 //MAIN PROGRAM
 //Get functions or operators from button
 let btnClear = document.getElementById("btnClear");
-btnClear.addEventListener("click",function(){displayCurrent.value = 0;resetCalculator();});
+btnClear.addEventListener("click",function () { displayCurrent.value = 0; resetCalculator();});
 
 let btnBackspace = document.getElementById("btnBackspace");
-btnBackspace.addEventListener("click",function(){clearForward();});
+btnBackspace.addEventListener("click",function () { clearForward();});
 
 let btnSummarize = document.getElementById("btnSummarize");
-btnSummarize.addEventListener("click", function(){getSummarize();});
+btnSummarize.addEventListener("click", function () { getSummarize();});
 
 let btnAdd = document.getElementById("btnAdd");
-btnAdd.addEventListener("click",function(){operatorAdd();});
+btnAdd.addEventListener("click",function () { operatorAdd();});
 
 let btnMinus = document.getElementById("btnMinus");
-btnMinus.addEventListener("click",function(){operatorSubtraction();});
+btnMinus.addEventListener("click",function () { operatorSubtraction();});
 
 let btnMultiplication = document.getElementById("btnMultiplication");
-btnMultiplication.addEventListener("click",function(){operatorMultiplication();});
+btnMultiplication.addEventListener("click",function () { operatorMultiplication();});
 
 let btnDivision = document.getElementById("btnDivision");
-btnDivision.addEventListener("click",function(){operatorDivision();});
+btnDivision.addEventListener("click",function () { operatorDivision();});
 
 
 //Get values from buttons
 let btnOne = document.getElementById("btnOne");
-btnOne.addEventListener("click",function(){addDigit(1);});
+btnOne.addEventListener("click",function () { addDigit(1); });
 
 let btnTwo = document.getElementById("btnTwo");
-btnTwo.addEventListener("click",function(){addDigit(2);});
+btnTwo.addEventListener("click",function () { addDigit(2); });
 
 let btnThree = document.getElementById("btnThree");
-btnThree.addEventListener("click",function(){addDigit(3);});
+btnThree.addEventListener("click",function () { addDigit(3); });
 
 let btnFour = document.getElementById("btnFour");
-btnFour.addEventListener("click",function(){addDigit(4);});
+btnFour.addEventListener("click",function () { addDigit(4); });
 
 let btnFive = document.getElementById("btnFive");
-btnFive.addEventListener("click",function(){addDigit(5);});
+btnFive.addEventListener("click",function () { addDigit(5); });
 
 let btnSix = document.getElementById("btnSix");
-btnSix.addEventListener("click",function(){addDigit(6);});
+btnSix.addEventListener("click",function () { addDigit(6); });
 
 let btnSeven = document.getElementById("btnSeven");
-btnSeven.addEventListener("click",function(){addDigit(7);});
+btnSeven.addEventListener("click",function () { addDigit(7); });
 
 let btnEight = document.getElementById("btnEight");
-btnEight.addEventListener("click",function(){addDigit(8);});
+btnEight.addEventListener("click",function () { addDigit(8); });
 
 let btnNine = document.getElementById("btnNine");
-btnNine.addEventListener("click",function(){addDigit(9);});
+btnNine.addEventListener("click",function () { addDigit(9); });
 
 let btnZero = document.getElementById("btnZero");
-btnZero.addEventListener("click",function(){addDigit(0);});
+btnZero.addEventListener("click",function () { addDigit(0); });
 
 //Using keyboard
-document.addEventListener("keydown", function(event){
-    let userKeyPress = event.keyCode;
-    switch (userKeyPress){
+document.addEventListener("keydown", function(event) {
+    let keycode = event.keyCode;
+    switch (keycode){
         case 48:
             addDigit(0);
             break;
@@ -199,8 +189,7 @@ document.addEventListener("keydown", function(event){
             addDigit(6);
             break;
         case 55:
-            if (event.shiftKey){operatorDivision();}
-            else{addDigit(7);}
+            addDigit(7);
             break;
         case 56:
             addDigit(8);
@@ -211,21 +200,16 @@ document.addEventListener("keydown", function(event){
         case 106:
             operatorMultiplication();
             break;
-
         case 107:
-        case 187:
             operatorAdd();
             break;
-
         case 109:
-        case 189:
             operatorSubtraction();
             break;
-
         case 111:
             operatorDivision();
             break;
-        case 13: //Enter
+        case 13:
             getSummarize();
             break;
         case 8:
@@ -234,10 +218,6 @@ document.addEventListener("keydown", function(event){
         case 27:
             resetCalculator();
             break;
-        case 191:
-            if (event.shiftKey){operatorMultiplication();}
-            break;
-
         default:
             break;
     }
